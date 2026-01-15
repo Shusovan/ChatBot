@@ -1,0 +1,17 @@
+youtube_search
+dotenv
+langgraph
+langchain_core
+duckduckgo-search
+duckduckgo_search
+yfinance
+sentence_transformers
+chromadb
+langchainhub
+langchain_huggingface
+accelerate
+hf_xet
+streamlit
+faiss-cpu
+tavily-python
+langchain-groq
