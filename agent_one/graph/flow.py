@@ -1,7 +1,8 @@
-from langgraph.graph import StateGraph
 
-from node.chatbot_node import ChatBotNode
-from state.state import State
+from langgraph.graph import StateGraph, START, END
+
+from agent_one.node.chatbot_node import ChatBotNode
+from agent_one.state.state import State
 
 
 class GraphBuilder:
@@ -19,21 +20,21 @@ class GraphBuilder:
 
         self.chatbot_node=ChatBotNode(self.llm)
 
-        self.graph_builder.add_node("chatbot", self.chatbot_node.process)
-        self.graph_builder.add_edge("START", "chatbot")
-        self.graph_builder.add_edge("chatbot", "END")
+        self.graph_builder.add_node("ChatBot", self.chatbot_node.process)
+        self.graph_builder.add_edge(START, "ChatBot")
+        self.graph_builder.add_edge("ChatBot", END)
 
 
-    def graph_setup(self, usecase):
+    def graph_setup(self, usecase: str):
         """
         Sets up the graph based on the selected use case.
         Currently supports 'chatbot' use case.
         """
 
-        if usecase == "chatbot":
+        if usecase == "ChatBot":
             self.chatbot_graph()
-            
-        else:
-            raise ValueError(f"Unsupported use case: {usecase}")
 
-        return self.graph_builder
+        else:
+            raise ValueError(f"Unsupported usecase: {usecase}")
+
+        return self.graph_builder.compile()

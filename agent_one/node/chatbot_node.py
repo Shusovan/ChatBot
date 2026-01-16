@@ -1,4 +1,4 @@
-from state.state import State
+from agent_one.state.state import State
 
 
 class ChatBotNode:
@@ -15,4 +15,4 @@ class ChatBotNode:
             Process the input state and generate a response using the LLM model.
         """
 
-        return {"messages": self.llm.invoke(state['messages'])}
+        return {"messages": self.llm.invoke(state.messages)}

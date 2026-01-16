@@ -1,9 +1,9 @@
 import streamlit as st
-from torch import Graph
 
 from agent_one.UI.streamlitui.loadui import LoadStreamlitUI
-from graph.flow import GraphBuilder
-from llm.groqllm import GroqLLM
+from agent_one.graph.flow import GraphBuilder
+from agent_one.llm.groqllm import GroqLLM
+from agent_one.UI.streamlitui.display import DisplayStreamlit
 
 def load_agent_one():
 
@@ -33,7 +33,7 @@ def load_agent_one():
                 return
             
             # Initialize and set up the graph based on usecase
-            usecase = user_input.get("use_case_selection")
+            usecase = user_input.get("usecase_choice")
 
             if not usecase:
                 st.error("Use case selection is required.")
@@ -43,7 +43,8 @@ def load_agent_one():
 
             try:
                 graph = graph_builder.graph_setup(usecase=usecase)
-                
+                DisplayStreamlit(usecase=usecase, graph=graph, user_message=user_message).display_result()
+
             except ValueError as ve:
                 st.error(str(ve))
                 return

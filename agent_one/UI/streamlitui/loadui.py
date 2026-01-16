@@ -13,7 +13,7 @@ class LoadStreamlitUI:
 
     def render(self):
 
-        st.set_page_config(page_title=self.config.get_page_title(), layout="wide")
+        st.set_page_config(page_title=self.config.get_page_title())
         st.title(self.config.get_page_title())
 
         with st.sidebar:
@@ -40,6 +40,6 @@ class LoadStreamlitUI:
                     st.warning("Please enter your API Key to proceed.")
 
             # Usecase Selection
-            self.user_controls['usecase_choice'] = st.selectbox(label="Select Usecase", options=usecases_options, index=0)
+            self.user_controls['usecase_choice'] = st.selectbox(label="Select Usecase", options=usecases_options)
 
         return self.user_controls
